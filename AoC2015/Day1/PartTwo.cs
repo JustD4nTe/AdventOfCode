@@ -2,7 +2,7 @@ namespace AoC2015.Day1;
 
 static class PartTwo
 {
-    static readonly string input = "Day1/input.txt";
+    private const string input = "Day1/input.txt";
 
     public static long Solve()
     {
