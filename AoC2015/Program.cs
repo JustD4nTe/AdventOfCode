@@ -1,4 +1,4 @@
-﻿using AoC2015.Day4;
+﻿using AoC2015.Day5;
 using System.Diagnostics;
 
 var sw = Stopwatch.StartNew();
