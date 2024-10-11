@@ -1,4 +1,4 @@
-namespace Day7;
+namespace AoC2023.Day7;
 
 static class PartOne
 {
@@ -15,7 +15,7 @@ static class PartOne
 
         var totalWinnings = 0;
 
-        for(var i = 0; i < temp.Length; i++)
+        for (var i = 0; i < temp.Length; i++)
             totalWinnings += (i + 1) * temp[i].Bid;
 
         return totalWinnings;

@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Day12;
+namespace AoC2023.Day12;
 
 static class PartOne
 {
@@ -35,7 +35,7 @@ static class PartOne
             do
             {
                 template = GetBin(counter, unkownSpringCount);
-                if(template.Count(x => x) != minNumberOfUnkownSprings)
+                if (template.Count(x => x) != minNumberOfUnkownSprings)
                 {
                     counter++;
                     continue;
@@ -65,7 +65,7 @@ static class PartOne
                                        .Select(x => x.Length)
                                        .Where(x => x != 0);
 
-                if(Enumerable.SequenceEqual(groupArragment, proposition))
+                if (groupArragment.SequenceEqual(proposition))
                     localDiffCounter++;
 
                 counter++;
@@ -81,7 +81,7 @@ static class PartOne
     {
         var buff = Convert.ToString(value, 2);
 
-        if(buff.Length < minSize)
+        if (buff.Length < minSize)
             buff = new string('0', minSize - buff.Length) + buff;
 
         return buff.Select(s => s.Equals('1'))

@@ -1,5 +1,4 @@
-
-namespace Day5;
+namespace AoC2023.Day5;
 
 static class PartOne
 {
@@ -30,7 +29,7 @@ static class PartOne
         ParseMapping(ref index, waterToLightMap.Values, lightToTemperatureMap, rawInput);
         ParseMapping(ref index, lightToTemperatureMap.Values, temperatureToHumidityMap, rawInput);
         ParseMapping(ref index, temperatureToHumidityMap.Values, humidityToLocationMap, rawInput);
-        
+
         return humidityToLocationMap.Values.Min();
     }
 
@@ -49,7 +48,7 @@ static class PartOne
 
             foreach (var seedToMap in seedsToMap)
             {
-                map[seedToMap] = (seedToMap - sourceStart) + destStart;
+                map[seedToMap] = seedToMap - sourceStart + destStart;
             }
 
             index++;

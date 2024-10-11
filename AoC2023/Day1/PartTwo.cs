@@ -1,12 +1,12 @@
 using System.Text.RegularExpressions;
 
-namespace Day1;
+namespace AoC2023.Day1;
 
 static class PartTwo
 {
     static readonly string test2 = "../../../Day1/test2.txt";
     static readonly string input = "../../../Day1/input.txt";
-    
+
     public static long Solve()
     {
         List<(string, string)> spelledOdLetters =
@@ -32,7 +32,7 @@ static class PartTwo
             {
                 convertedLine = convertedLine.Replace(spelledOdLetter.Item1, spelledOdLetter.Item2);
             }
-            
+
             convertedLine = Regex.Replace(convertedLine, "[a-zA-Z]", "");
             sum += int.Parse(convertedLine[0].ToString() + convertedLine[^1]);
         }

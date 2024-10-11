@@ -1,7 +1,7 @@
 using System.Data;
 using System.Text;
 
-namespace Day3;
+namespace AoC2023.Day3;
 
 static class PartTwo
 {
@@ -78,10 +78,10 @@ static class PartTwo
             if (char.IsDigit(buff))
                 gears.Add(GetNumber(rawInput, yChange, xChange));
         }
-        
-        if(gears.Count == 2)
+
+        if (gears.Count == 2)
             return gears.Aggregate((a, x) => a * x);
-        
+
         return 0;
     }
 }

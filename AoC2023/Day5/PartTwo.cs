@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Day5;
+namespace AoC2023.Day5;
 
 static class PartTwo
 {

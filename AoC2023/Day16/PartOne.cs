@@ -1,4 +1,4 @@
-namespace Day16;
+namespace AoC2023.Day16;
 
 static class PartOne
 {
@@ -37,7 +37,7 @@ static class PartOne
         };
 
         PrintEnergizedGrid();
-        
+
         return _energizedGrid.Sum(x => x.Count(y => y));
     }
 

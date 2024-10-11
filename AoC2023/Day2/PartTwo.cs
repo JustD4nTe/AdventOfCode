@@ -1,4 +1,4 @@
-namespace Day2;
+namespace AoC2023.Day2;
 
 static class PartTwo
 {
@@ -11,7 +11,7 @@ static class PartTwo
         const int numberOfGames = 100;
         var games = new List<Game>();
 
-        for(var i = 0; i < numberOfGames; i++)
+        for (var i = 0; i < numberOfGames; i++)
         {
             var currGame = new Game(i + 1);
 
@@ -30,7 +30,7 @@ static class PartTwo
                 }
             }
 
-            games.Add(currGame); 
+            games.Add(currGame);
         }
 
         return games.Sum(x => x.GetPowerOfMinimumSetOfCubes());
@@ -57,7 +57,7 @@ static class PartTwo
                * GetSingleColorCubes(CubeColor.Red).Max(x => x.CubeCount)
                * GetSingleColorCubes(CubeColor.Green).Max(x => x.CubeCount);
 
-        private IEnumerable<CubeSet> GetSingleColorCubes(CubeColor cubeColor) 
+        private IEnumerable<CubeSet> GetSingleColorCubes(CubeColor cubeColor)
             => _cubeSets.Where(x => x.CubeColor == cubeColor);
     }
 }

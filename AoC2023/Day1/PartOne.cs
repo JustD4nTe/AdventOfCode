@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Day1;
+namespace AoC2023.Day1;
 
 static class PartOne
 {

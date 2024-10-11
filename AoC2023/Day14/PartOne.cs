@@ -1,4 +1,4 @@
-namespace Day14;
+namespace AoC2023.Day14;
 
 static class PartOne
 {
@@ -56,8 +56,8 @@ static class PartOne
     {
         var rowLoadCounter = platform.Length;
         var totalLoad = 0;
-        
-        for(var y = 0; y < platform.Length; y++, rowLoadCounter--)
+
+        for (var y = 0; y < platform.Length; y++, rowLoadCounter--)
             totalLoad += platform[y].Count(x => x is RoundedRock) * rowLoadCounter;
 
         return totalLoad;

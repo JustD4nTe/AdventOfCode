@@ -1,4 +1,6 @@
-﻿//Console.WriteLine(Day1.PartOne.Solve());
+﻿using AoC2023.Day18;
+
+//Console.WriteLine(Day1.PartOne.Solve());
 //Console.WriteLine(Day1.PartTwo.Solve());
 
 //Console.WriteLine(Day2.PartOne.Solve());
@@ -42,4 +44,5 @@
 //Console.WriteLine(Day16.PartOne.Solve());
 //Console.WriteLine(Day16.PartTwo.Solve());
 
-Console.WriteLine(Day18.PartOne.Solve());
+
+Console.WriteLine(PartOne.Solve());

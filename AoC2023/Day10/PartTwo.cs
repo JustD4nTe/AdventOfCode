@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Day10;
+namespace AoC2023.Day10;
 
 static class PartTwo
 {
@@ -125,7 +125,7 @@ static class PartTwo
         var rightBeam = string.Join("", loopPosition.Where(x => x.Y == currY && x.X > currX)
                                                     .OrderBy(x => x.X)
                                                     .Select(x => field[x.Y][x.X].Symbol));
-        if(rightBeam.Length == 0)
+        if (rightBeam.Length == 0)
             return false;
 
         var horizontalPseudoWallRegex = new Regex(@"(L{1}[-]*J{1})|(F{1}[-]*7{1})");
@@ -139,7 +139,7 @@ static class PartTwo
         // point inside loop should have odd number of walls in every direction
         return IsOdd(simplerRightBeam.Length);
     }
-    
+
     private static bool IsOdd(int value) => value % 2 == 1;
 
     private static Direction GetOppositeDirection(Direction direction)
@@ -203,7 +203,7 @@ static class PartTwo
     {
         public static Loop Create(Tile tile)
         {
-            if(tile is Start)
+            if (tile is Start)
                 return new('7');
             return new(tile.Symbol);
         }

@@ -1,4 +1,4 @@
-namespace Day8;
+namespace AoC2023.Day8;
 
 static class PartOne
 {
@@ -30,7 +30,7 @@ static class PartOne
 
         do
         {
-            if(index >= instructions.Length)
+            if (index >= instructions.Length)
                 index = 0;
 
             position = map[position].GetDirection(instructions[index++]);

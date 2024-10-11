@@ -1,4 +1,4 @@
-namespace Day9;
+namespace AoC2023.Day9;
 
 static class PartOne
 {
@@ -49,7 +49,7 @@ static class PartOne
     {
         triangle[^1].Add(0);
 
-        for(var i = triangle.Count - 2; i >= 0; i--)
+        for (var i = triangle.Count - 2; i >= 0; i--)
         {
             triangle[i].Add(triangle[i + 1][^1] + triangle[i][^1]);
         }

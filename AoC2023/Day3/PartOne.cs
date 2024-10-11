@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace Day3;
+namespace AoC2023.Day3;
 
 static class PartOne
 {

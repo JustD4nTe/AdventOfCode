@@ -1,4 +1,4 @@
-namespace Day8;
+namespace AoC2023.Day8;
 
 static class PartTwo
 {
@@ -57,7 +57,7 @@ static class PartTwo
 
     //https://stackoverflow.com/questions/147515/least-common-multiple-for-3-or-more-numbers/29717490#29717490
     static long LCM(long[] numbers)
-        => numbers.Aggregate((long a, long b) => Math.Abs(a * b) / GCD(a, b));
+        => numbers.Aggregate((a, b) => Math.Abs(a * b) / GCD(a, b));
     static long GCD(long a, long b)
         => b == 0 ? a : GCD(b, a % b);
 }

@@ -1,4 +1,4 @@
-namespace Day4;
+namespace AoC2023.Day4;
 
 static class PartTwo
 {
@@ -19,10 +19,10 @@ static class PartTwo
         var scratchcardCounter = new int[rawInput.Count];
         Array.Fill(scratchcardCounter, 1);
 
-        for(var i = 0; i < rawInput.Count; i++)
+        for (var i = 0; i < rawInput.Count; i++)
         {
             var intersectCount = rawInput[i][0].Intersect(rawInput[i][1]).Count();
-            for(var j = 1; j <= intersectCount; j++)
+            for (var j = 1; j <= intersectCount; j++)
             {
                 scratchcardCounter[i + j] += scratchcardCounter[i];
             }

@@ -1,5 +1,4 @@
-
-namespace Day14;
+namespace AoC2023.Day14;
 
 static class PartTwo
 {
@@ -20,7 +19,7 @@ static class PartTwo
             TiltToSouth(platform);
             TiltToEast(platform);
             var temp = CalculateLoadOfNorthBeam(platform);
-            if(!buff.Contains(temp))
+            if (!buff.Contains(temp))
                 Console.WriteLine(cycle);
             buff.Add(temp);
         }

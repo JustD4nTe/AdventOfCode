@@ -1,9 +1,8 @@
-
 using System.Data;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Day18;
+namespace AoC2023.Day18;
 
 static class PartOne
 {
@@ -51,7 +50,7 @@ static class PartOne
 
                 var nearestLeftBorder = row.Where(r => r.Position.X < x).Last()!;
                 var nearestRightBorder = row.Where(r => r.Position.X > x).First()!;
-var a = 123;
+                var a = 123;
                 if (nearestLeftBorder.Direction is not Direction.Down
                 && nearestRightBorder.Direction is not Direction.Up)
                 {

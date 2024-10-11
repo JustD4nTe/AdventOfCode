@@ -1,4 +1,4 @@
-namespace Day4;
+namespace AoC2023.Day4;
 
 static class PartOne
 {
