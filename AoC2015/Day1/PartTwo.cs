@@ -1,10 +1,10 @@
 namespace AoC2015.Day1;
 
-static class PartTwo
+public class PartTwo
 {
     private const string input = "Day1/input.txt";
 
-    public static long Solve()
+    public long Solve()
     {
         var temp = File.ReadAllLines(input)[0];
 

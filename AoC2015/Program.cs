@@ -1,10 +1,10 @@
-﻿using AoC2015.Day6;
+﻿using AoC2015.Day7;
 using System.Diagnostics;
 
 var sw = Stopwatch.StartNew();
 
-Console.WriteLine(PartOne.Solve());
+Console.WriteLine((new PartOne()).Solve());
 Console.WriteLine($"Execution time: {sw.ElapsedMilliseconds}ms"); 
 
-Console.WriteLine(PartTwo.Solve());
+Console.WriteLine((new PartTwo()).Solve());
 Console.WriteLine($"Execution time: {sw.ElapsedMilliseconds}ms");

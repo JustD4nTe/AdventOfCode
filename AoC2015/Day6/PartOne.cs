@@ -1,10 +1,10 @@
 namespace AoC2015.Day6;
 
-static class PartOne
+public class PartOne
 {
     private const string inputFile = "Day6/input.txt";
     private const int gridSize = 1000;
-    public static long Solve()
+    public long Solve()
     {
         var input = File.ReadAllLines(inputFile);
 
@@ -56,7 +56,7 @@ static class PartOne
         return lightGrid.Sum(x => x.Count(y => y));
     }
 
-    private static int[][] GetPositions(string row, int i) 
+    private int[][] GetPositions(string row, int i) 
         => row[i..].Split(" through ")
                    .Select(x => x.Split(",")
                                  .Select(int.Parse)

@@ -1,16 +1,16 @@
 namespace AoC2015.Day5;
 
-static class PartTwo
+public class PartTwo
 {
     private const string inputFile = "Day5/input.txt";
 
-    public static long Solve()
+    public long Solve()
     {
         return File.ReadAllLines(inputFile)
                    .Count(IsNiceString);
     }
 
-    private static bool IsNiceString(string value)
+    private bool IsNiceString(string value)
     {
         var pairLetters = new List<string>() { value[..2] };
 

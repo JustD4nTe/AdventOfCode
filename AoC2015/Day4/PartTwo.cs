@@ -3,9 +3,9 @@ using System.Text;
 
 namespace AoC2015.Day4;
 
-static class PartTwo
+public class PartTwo
 {
-    public static long Solve()
+    public long Solve()
     {
         var input = "iwrupvqb";
         var i = 346386;
@@ -18,5 +18,5 @@ static class PartTwo
         }
     }
 
-    private static string Md5(string input) => Convert.ToHexString(MD5.HashData(Encoding.ASCII.GetBytes(input)));
+    private string Md5(string input) => Convert.ToHexString(MD5.HashData(Encoding.ASCII.GetBytes(input)));
 }

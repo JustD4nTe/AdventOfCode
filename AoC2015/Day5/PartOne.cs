@@ -1,19 +1,19 @@
 namespace AoC2015.Day5;
 
-static class PartOne
+public class PartOne
 {
     private const string inputFile = "Day5/input.txt";
     
-    private static readonly string[] forbiddenStrings = ["ab", "cd", "pq", "xy"];
-    private static readonly char[] vowels = ['a', 'e', 'i', 'o', 'u'];
+    private readonly string[] forbiddenStrings = ["ab", "cd", "pq", "xy"];
+    private readonly char[] vowels = ['a', 'e', 'i', 'o', 'u'];
     
-    public static long Solve()
+    public long Solve()
     {
         return File.ReadAllLines(inputFile)
                    .Count(IsNiceString);
     }
 
-    private static bool IsNiceString(string value)
+    private bool IsNiceString(string value)
     {
         // It does not contain the strings ab, cd, pq, or xy
         if (forbiddenStrings.Any(value.Contains))

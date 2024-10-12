@@ -1,10 +1,10 @@
 namespace AoC2015.Day3;
 
-static class PartTwo
+public class PartTwo
 {
     private const string inputFile = "Day3/input.txt";
 
-    public static long Solve()
+    public long Solve()
     {
         var input = File.ReadAllLines(inputFile)[0].ToCharArray();
 
@@ -24,7 +24,7 @@ static class PartTwo
         return houseTracker.Count;
     }
 
-    private static Position Move(char input, Position position) 
+    private Position Move(char input, Position position) 
         => input switch
         {
             '^' => position with { Y = position.Y + 1 },
