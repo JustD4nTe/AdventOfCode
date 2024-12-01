@@ -1,3 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using AoC.Shared;
 
-Console.WriteLine("Hello, World!");
+Solution[] solutions =
+[
+    new AoC2024.Day1.PartOne("Day1/input.txt"),
+    new AoC2024.Day1.PartTwo("Day1/input.txt"),
+];
+
+foreach (var solution in solutions)
+{
+    SolutionManager.BenchmarkSolution(solution);
+}
