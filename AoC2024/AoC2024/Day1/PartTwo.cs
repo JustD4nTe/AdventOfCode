@@ -10,30 +10,8 @@ public class PartTwo(string input) : Solution(input)
             .Select(x => x.Split("   "))
             .ToArray();
 
-        var right = rawInput.Select(x => x[1]) .ToArray();
+        var right = rawInput.Select(x => x[1]).CountBy(x => x).ToDictionary();
 
-        var rightOccurrence = new Dictionary<string, int>();
-
-        for (var i = 0; i < right.Length; i++)
-        {
-            if (rightOccurrence.ContainsKey(right[i]))
-            {
-                rightOccurrence[right[i]]++;
-            }
-            else
-            {
-                rightOccurrence[right[i]] = 1;
-            }
-        }
-        
-        var sum = 0;
-        for (var i = 0; i < rawInput.Length; i++)
-        {
-            if (rightOccurrence.TryGetValue(rawInput[i][0], out var value))
-            {
-                sum += int.Parse(rawInput[i][0]) * value;
-            }
-        }
-        return sum;
+        return rawInput.Sum(x => int.Parse(x[0]) * right.GetValueOrDefault(x[0]));
     }
 }
