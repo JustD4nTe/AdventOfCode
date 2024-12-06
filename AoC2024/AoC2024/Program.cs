@@ -10,6 +10,8 @@ Solution[] solutions =
     new AoC2024.Day3.PartTwo("Day3/input.txt"),
     new AoC2024.Day4.PartOne("Day4/input.txt"),
     new AoC2024.Day4.PartTwo("Day4/input.txt"),
+    new AoC2024.Day5.PartOne("Day5/input.txt"),
+    new AoC2024.Day5.PartTwo("Day5/input.txt"),
 ];
 
 foreach (var solution in solutions)
