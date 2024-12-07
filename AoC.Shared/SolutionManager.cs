@@ -7,13 +7,13 @@ public static class SolutionManager
     private static Stopwatch sw;
     public static void BenchmarkSolution(Solution solution)
     {
-        sw = Stopwatch.StartNew();
         var beforeMemory = GC.GetTotalMemory(true);
+        sw = Stopwatch.StartNew();
 
         var result = solution.Solve();
         
-        var memory = GC.GetTotalMemory(true) - beforeMemory;
         sw.Stop();
+        var memory = GC.GetTotalMemory(true) - beforeMemory;
 
         Console.WriteLine("##################################################");
         Console.WriteLine(solution.GetType().FullName);
