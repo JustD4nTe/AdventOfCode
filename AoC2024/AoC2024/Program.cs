@@ -1,4 +1,4 @@
-﻿using AoC.Shared;
+using AoC.Shared;
 
 Solution[] solutions =
 [
