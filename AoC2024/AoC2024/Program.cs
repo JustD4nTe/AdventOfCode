@@ -15,7 +15,9 @@ Solution[] solutions =
     new AoC2024.Day6.PartOne("Day6/input.txt"),
     new AoC2024.Day6.PartTwo("Day6/input.txt"),
     new AoC2024.Day7.PartOne("Day7/input.txt"),
-    new AoC2024.Day7.PartTwo("Day7/input.txt"),
+    // new AoC2024.Day7.PartTwo("Day7/input.txt"), // To be optimized ~7s
+    new AoC2024.Day8.PartOne("Day8/input.txt"),
+    new AoC2024.Day8.PartTwo("Day8/input.txt"),
 ];
 
 foreach (var solution in solutions)
