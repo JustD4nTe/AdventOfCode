@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using AoC.Shared;
 
 Solution[] solutions =
@@ -22,9 +23,15 @@ Solution[] solutions =
     new AoC2024.Day9.PartTwo("Day9/input.txt"),
     new AoC2024.Day10.PartOne("Day10/input.txt"),
     new AoC2024.Day10.PartTwo("Day10/input.txt"),
+    new AoC2024.Day11.PartOne("Day11/input.txt"),
+    new AoC2024.Day11.PartTwo("Day11/input.txt"),
 ];
 
+var sw = new Stopwatch();
+sw.Start();
 foreach (var solution in solutions)
 {
     SolutionManager.BenchmarkSolution(solution);
 }
+sw.Stop();
+Console.WriteLine(sw.Elapsed);
