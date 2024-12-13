@@ -16,6 +16,9 @@ public class Day12Tests
     
     [Theory]
     [InlineData("Day12/TestInput_a.txt",80)]
+    [InlineData("Day12/TestInput_b.txt",436)]
+    [InlineData("Day12/TestInput_d.txt",236)]
+    [InlineData("Day12/TestInput_e.txt",368)]
     public void PartTwoTest(string input, long expectedResult)
     {
         Assert.Equal(expectedResult, new PartTwo(input).Solve());

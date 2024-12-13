@@ -12,7 +12,7 @@ public class PartTwo(string input) : Solution(input)
         var plantsAreas = new List<List<Position>>();
 
         var seen = new HashSet<Position>();
-        
+
         for (var y = 0; y < gardenMap.Length; y++)
         {
             for (var x = 0; x < gardenMap[y].Length; x++)
@@ -31,38 +31,37 @@ public class PartTwo(string input) : Solution(input)
                     plantPositions.Add(position);
                     seen.Add(position);
 
-                    if (position.Y + 1 < gardenMap.Length 
-                        && gardenMap[position.Y + 1][position.X] == gardenMap[position.Y][position.X] 
+                    if (position.Y + 1 < gardenMap.Length
+                        && gardenMap[position.Y + 1][position.X] == gardenMap[position.Y][position.X]
                         && !queue.Contains(position with { Y = position.Y + 1 })
                         && !seen.Contains(position with { Y = position.Y + 1 }))
                     {
                         queue.Enqueue(position with { Y = position.Y + 1 });
                     }
 
-                    if (position.X + 1 < gardenMap[position.Y].Length 
-                        && gardenMap[position.Y][position.X + 1] == gardenMap[position.Y][position.X] 
+                    if (position.X + 1 < gardenMap[position.Y].Length
+                        && gardenMap[position.Y][position.X + 1] == gardenMap[position.Y][position.X]
                         && !queue.Contains(position with { X = position.X + 1 })
                         && !seen.Contains(position with { X = position.X + 1 }))
                     {
                         queue.Enqueue(position with { X = position.X + 1 });
                     }
-                    
-                    if (position.Y - 1 >= 0 
-                        && gardenMap[position.Y - 1][position.X] == gardenMap[position.Y][position.X] 
+
+                    if (position.Y - 1 >= 0
+                        && gardenMap[position.Y - 1][position.X] == gardenMap[position.Y][position.X]
                         && !queue.Contains(position with { Y = position.Y - 1 })
                         && !seen.Contains(position with { Y = position.Y - 1 }))
                     {
                         queue.Enqueue(position with { Y = position.Y - 1 });
                     }
 
-                    if (position.X - 1 >= 0 
-                        && gardenMap[position.Y][position.X - 1] == gardenMap[position.Y][position.X] 
+                    if (position.X - 1 >= 0
+                        && gardenMap[position.Y][position.X - 1] == gardenMap[position.Y][position.X]
                         && !queue.Contains(position with { X = position.X - 1 })
                         && !seen.Contains(position with { X = position.X - 1 }))
                     {
                         queue.Enqueue(position with { X = position.X - 1 });
                     }
-                    
                 } while (queue.Count > 0);
 
                 plantsAreas.Add(plantPositions.Distinct().ToList());
@@ -75,31 +74,94 @@ public class PartTwo(string input) : Solution(input)
         {
             var area = plantPositions.Count;
             var perimeter = 0;
+            var plantType = gardenMap[plantPositions[0].Y][plantPositions[0].X];
 
-            for (var i = 0; i < plantPositions.Count; i++)
+            foreach (var (x, y) in plantPositions)
             {
-                var currPlant = plantPositions[i];
-
-                var neighbours = 8;
-
-                for (var j = 0; j < plantPositions.Count; j++)
+                var corners = 0;
+                // ======= outer corners =======
+                // up right
+                if ((y - 1 < 0 && x + 1 == gardenMap[y].Length)
+                    || (y - 1 >= 0 && x + 1 == gardenMap[y].Length &&gardenMap[y - 1][x] != plantType)
+                    || (y - 1 < 0 && x + 1 < gardenMap[y].Length && gardenMap[y][x + 1] != plantType)
+                    || (y - 1 >= 0 && x + 1 < gardenMap[y].Length
+                                   && gardenMap[y - 1][x] != plantType
+                                   && gardenMap[y][x + 1] != plantType))
                 {
-                    if (j == i)
-                        continue;
-
-                    var neighbourPlant = plantPositions[j];
-                    
-                    if (neighbourPlant.Y == currPlant.Y + 1 && neighbourPlant.X == currPlant.X)
-                        neighbours--;
-                    else if (neighbourPlant.Y == currPlant.Y - 1 && neighbourPlant.X == currPlant.X)
-                        neighbours--;
-                    else if (neighbourPlant.Y == currPlant.Y && neighbourPlant.X == currPlant.X + 1)
-                        neighbours--;
-                    else if (neighbourPlant.Y == currPlant.Y && neighbourPlant.X == currPlant.X - 1)
-                        neighbours--;
+                    corners++;
                 }
 
-                perimeter += 8 - neighbours;
+                // down right
+                if ((y + 1 == gardenMap.Length && x + 1 == gardenMap[y].Length)
+                    || (y + 1 < gardenMap.Length && x + 1 == gardenMap[y].Length && gardenMap[y + 1][x] != plantType)
+                    || (y + 1 == gardenMap.Length && x + 1 < gardenMap[y].Length && gardenMap[y][x + 1] != plantType)
+                    || (y + 1 < gardenMap.Length && x + 1 < gardenMap[y].Length
+                                                 && gardenMap[y][x + 1] != plantType
+                                                 && gardenMap[y + 1][x] != plantType))
+                {
+                    corners++;
+                }
+
+                // down left
+                if ((y + 1 == gardenMap.Length && x - 1 < 0)
+                    ||(y + 1 < gardenMap.Length && x - 1 < 0 && gardenMap[y + 1][x] != plantType)
+                    || (y + 1 == gardenMap.Length && x - 1 >= 0 && gardenMap[y][x - 1] != plantType)
+                    || (y + 1 < gardenMap.Length && x - 1 >= 0
+                                                 && gardenMap[y + 1][x] != plantType
+                                                 && gardenMap[y][x - 1] != plantType))
+                {
+                    corners++;
+                }
+
+                // up left
+                if ((y - 1 < 0 && x - 1 < 0)
+                    || (y - 1 >= 0 && x - 1 < 0 && gardenMap[y - 1][x] != plantType)
+                    || (y - 1 < 0 && x - 1 >= 0 && gardenMap[y][x - 1] != plantType)
+                    || (y - 1 >= 0 && x - 1 >= 0
+                                   && gardenMap[y][x - 1] != plantType
+                                   && gardenMap[y - 1][x] != plantType))
+                {
+                    corners++;
+                }
+
+                // ======= inner corners =======
+                // up right
+                if (y - 1 >= 0 && x + 1 < gardenMap[y].Length
+                               && gardenMap[y - 1][x] == plantType
+                               && gardenMap[y][x + 1] == plantType
+                               && gardenMap[y - 1][x + 1] != plantType)
+                {
+                    corners++;
+                }
+                // down right
+                if (y + 1 < gardenMap.Length && x + 1 < gardenMap[y].Length
+                                             && gardenMap[y][x + 1] == plantType
+                                             && gardenMap[y + 1][x] == plantType
+                                             && gardenMap[y + 1][x + 1] != plantType)
+                {
+                    corners++;
+                }
+
+                // down left
+                if (y + 1 < gardenMap.Length && x - 1 >= 0
+                                             && gardenMap[y + 1][x] == plantType
+                                             && gardenMap[y][x - 1] == plantType
+                                             && gardenMap[y + 1][x - 1] != plantType)
+                {
+                    corners++;
+                }
+
+                // up left
+                if (y - 1 >= 0 && x - 1 >= 0
+                               && gardenMap[y][x - 1] == plantType
+                               && gardenMap[y - 1][x] == plantType
+                               && gardenMap[y - 1][x - 1] != plantType)
+                {
+                    corners++;
+                }
+
+
+                perimeter += corners;
             }
 
             sum += perimeter * area;
