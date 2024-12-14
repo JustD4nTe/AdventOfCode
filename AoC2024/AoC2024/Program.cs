@@ -29,6 +29,8 @@ Solution[] solutions =
     new AoC2024.Day12.PartTwo("Day12/input.txt"),
     new AoC2024.Day13.PartOne("Day13/input.txt"),
     new AoC2024.Day13.PartTwo("Day13/input.txt"),
+    new AoC2024.Day14.PartOne("Day14/input.txt", 101, 103),
+    // new AoC2024.Day14.PartTwo("Day14/input.txt", 101, 103), // Draw 100k images
 ];
 
 var sw = new Stopwatch();
