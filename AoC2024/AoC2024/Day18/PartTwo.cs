@@ -1,5 +1,6 @@
 using AoC.Shared;
 using AoC.Shared.Enums;
+using AoC.Shared.Helpers;
 using AoC.Shared.ValueObjects;
 
 namespace AoC2024.Day18;
@@ -17,94 +18,77 @@ public class PartTwo(string input, int memorySpaceSize) : Solution(input)
                 .Select(int.Parse)
                 .ToArray())
             .Select(x => new Position(x[0], x[1]))
-            .ToArray();
+            .ToArray()
+            .AsSpan();
 
         var start = new Position(0, 0);
         var end = new Position(memorySpaceSize, memorySpaceSize);
 
-        for (var i = 0; i < corrupted.Length; i++)
+        var hi = corrupted.Length - 1;
+        var mid = (int)Math.Round(hi / 2.0);
+        var lo = 0;
+        
+        while (lo != hi && hi != mid)
         {
-            var buff = corrupted[..(i + 1)];
-            if(Pathfinding(buff, start, end) == int.MaxValue)
-            {
-                Console.WriteLine(buff[^1]);
-                return -1;
-            }
+            var visited = ArrayHelper.InitMap<bool>(Height, Length);
+            ArrayHelper.Fill(visited, corrupted[..mid], true);
+
+            if (Pathfinding(visited, start, end))
+                lo = mid;
+            else
+                hi = mid;
+            
+            mid = (int)Math.Round((hi + lo) / 2.0);
         }
 
-        return Pathfinding(corrupted, start, end);
+        Console.WriteLine(corrupted[lo]);
+
+        return -1;
     }
 
-    private int Pathfinding(Position[] corrupted, Position start, Position end)
+    private bool Pathfinding(bool[][] visited, Position start, Position end)
     {
         // to be discovered
         var openSet = new Queue<Position>();
         openSet.Enqueue(start);
 
-        // For node n, gScore[n] is the currently known cost of the cheapest path from start to n.
-        var mScore = InitMap(Height, Length, int.MaxValue);
-        mScore[start.Y][start.X] = 0;
-
-        // var mVisited = InitMap(length, height, false);
-
-        var visited = new List<Position>();
-
         while (openSet.Count > 0)
         {
             var current = openSet.Dequeue();
 
-            if (visited.Contains(current))
+            if (visited[current.Y][current.X])
                 continue;
+            
+            visited[current.Y][current.X] = true;
 
-            visited.Add(current);
+            if (current == end)
+                return true;
 
-            var neighbours = GetNeighbours(corrupted, current);
-
-            foreach (var neighbour in neighbours)
-            {
-                var newScore = mScore[current.Y][current.X] + 1;
-                if (newScore < mScore[neighbour.Y][neighbour.X])
-                    mScore[neighbour.Y][neighbour.X] = newScore;
-
+            var neighbours = GetNeighbours(current);
+            
+            foreach(var neighbour in neighbours)
                 openSet.Enqueue(neighbour);
-            }
         }
 
-        return mScore[end.Y][end.X];
+        return false;
     }
 
-    private Position[] GetNeighbours(Position[] corrupted, Position current)
+    private List<Position> GetNeighbours(Position current)
     {
         var neighbours = new List<Position>();
 
-        if (current.Y + 1 < Height && !corrupted.Any(x => x.Y == current.Y + 1 && x.X == current.X))
+        if (current.Y + 1 < Height)
             neighbours.Add(current with { Y = current.Y + 1 });
 
-        if (current.Y - 1 >= 0 && !corrupted.Any(x => x.Y == current.Y - 1 && x.X == current.X))
+        if (current.Y - 1 >= 0)
             neighbours.Add(current with { Y = current.Y - 1 });
 
-        if (current.X + 1 < Length && !corrupted.Any(x => x.Y == current.Y && x.X == current.X + 1))
+        if (current.X + 1 < Length)
             neighbours.Add(current with { X = current.X + 1 });
 
-        if (current.X - 1 >= 0 && !corrupted.Any(x => x.Y == current.Y && x.X == current.X - 1))
+        if (current.X - 1 >= 0)
             neighbours.Add(current with { X = current.X - 1 });
 
-        return neighbours.ToArray();
-    }
-
-    private static T[][] InitMap<T>(int length, int height, T defaultValue)
-    {
-        var map = new T[height][];
-
-        for (var y = 0; y < height; y++)
-        {
-            map[y] = new T[length];
-            for (var x = 0; x < length; x++)
-            {
-                map[y][x] = defaultValue;
-            }
-        }
-
-        return map;
+        return neighbours;
     }
 }

@@ -22,7 +22,7 @@ public class PartOne(string input, int memorySpaceSize, int maxByteLength) : Sol
 
         if (corrupted.Length > maxByteLength)
             corrupted = corrupted[..maxByteLength];
-        
+
         var start = new Position(0, 0);
         var end = new Position(memorySpaceSize, memorySpaceSize);
 
@@ -31,28 +31,25 @@ public class PartOne(string input, int memorySpaceSize, int maxByteLength) : Sol
 
     private int Pathfinding(Position[] corrupted, Position start, Position end)
     {
-        // to be discovered
         var openSet = new Queue<Position>();
         openSet.Enqueue(start);
 
-        // For node n, gScore[n] is the currently known cost of the cheapest path from start to n.
         var mScore = ArrayHelper.InitMap(Height, Length, int.MaxValue);
         mScore[start.Y][start.X] = 0;
 
-        // var mVisited = InitMap(length, height, false);
-
-        var visited = new List<Position>();
+        var visited = ArrayHelper.InitMap<bool>(Height, Length);
+        ArrayHelper.Fill(visited, corrupted, true);
 
         while (openSet.Count > 0)
         {
             var current = openSet.Dequeue();
 
-            if (visited.Contains(current))
+            if (visited[current.Y][current.X])
                 continue;
 
-            visited.Add(current);
+            visited[current.Y][current.X] = true;
 
-            var neighbours = GetNeighbours(corrupted, current);
+            var neighbours = GetNeighbours(current);
 
             foreach (var neighbour in neighbours)
             {
@@ -67,20 +64,20 @@ public class PartOne(string input, int memorySpaceSize, int maxByteLength) : Sol
         return mScore[end.Y][end.X];
     }
 
-    private Position[] GetNeighbours(Position[] corrupted, Position current)
+    private Position[] GetNeighbours(Position current)
     {
         var neighbours = new List<Position>();
 
-        if (current.Y + 1 < Height && !corrupted.Any(x => x.Y == current.Y + 1 && x.X == current.X))
+        if (current.Y + 1 < Height)
             neighbours.Add(current with { Y = current.Y + 1 });
 
-        if (current.Y - 1 >= 0 && !corrupted.Any(x => x.Y == current.Y - 1 && x.X == current.X))
+        if (current.Y - 1 >= 0)
             neighbours.Add(current with { Y = current.Y - 1 });
 
-        if (current.X + 1 < Length && !corrupted.Any(x => x.Y == current.Y && x.X == current.X + 1))
+        if (current.X + 1 < Length)
             neighbours.Add(current with { X = current.X + 1 });
 
-        if (current.X - 1 >= 0 && !corrupted.Any(x => x.Y == current.Y && x.X == current.X - 1))
+        if (current.X - 1 >= 0)
             neighbours.Add(current with { X = current.X - 1 });
 
         return neighbours.ToArray();

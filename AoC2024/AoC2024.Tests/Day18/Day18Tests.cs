@@ -11,5 +11,4 @@ public class Day18Tests
     {
         Assert.Equal(expectedResult, new PartOne(input, 6, 12).Solve());
     }
-    
 }
