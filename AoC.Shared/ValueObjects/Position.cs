@@ -12,4 +12,6 @@ public record Position(int X, int Y)
     
     public bool IsInGrid(int maxX, int maxY) 
         => X >= 0 && X < maxX && Y >= 0 && Y < maxY;
+
+    public override string ToString() => $"({X}, {Y})";
 }
