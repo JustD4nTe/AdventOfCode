@@ -14,11 +14,11 @@ public class Day16Tests
         Assert.Equal(expectedResult, new PartOne(input).Solve());
     }
     
-    // [Theory]
-    // [InlineData("Day16/TestInput_a.txt",45)]
-    // [InlineData("Day16/TestInput_b.txt",64)]
-    // public void PartTwoTest(string input, long expectedResult)
-    // {
-    //     Assert.Equal(expectedResult, new PartTwo(input).Solve());
-    // }
+    [Theory]
+    [InlineData("Day16/TestInput_a.txt",45)]
+    [InlineData("Day16/TestInput_b.txt",64)]
+    public void PartTwoTest(string input, long expectedResult)
+    {
+        Assert.Equal(expectedResult, new PartTwo(input).Solve());
+    }
 }
