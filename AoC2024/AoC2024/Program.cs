@@ -49,6 +49,8 @@ Solution[] solutions =
     new AoC2024.Day22.PartTwo("Day22/input.txt"),
     new AoC2024.Day23.PartOne("Day23/input.txt"),
     new AoC2024.Day23.PartTwo("Day23/input.txt"),
+    new AoC2024.Day24.PartOne("Day24/input.txt"),
+    // new AoC2024.Day24.PartTwo("Day24/input.txt"), // not solved :c
 ];
 
 var sw = new Stopwatch();
