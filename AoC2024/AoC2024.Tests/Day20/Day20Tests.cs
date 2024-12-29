@@ -12,10 +12,10 @@ public class Day20Tests
         Assert.Equal(expectedResult, new PartOne(input, 20).Solve());
     }
     
-    // [Theory]
-    // [InlineData("Day20/TestInput_a.txt",16)]
-    // public void PartTwoTest(string input, long expectedResult)
-    // {
-    //     Assert.Equal(expectedResult, new PartTwo(input).Solve());
-    // }
+    [Theory]
+    [InlineData("Day20/TestInput_a.txt",285)]
+    public void PartTwoTest(string input, long expectedResult)
+    {
+        Assert.Equal(expectedResult, new PartTwo(input, 50).Solve());
+    }
 }

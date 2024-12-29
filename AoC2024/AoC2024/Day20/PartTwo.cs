@@ -3,11 +3,12 @@ using AoC.Shared.ValueObjects;
 
 namespace AoC2024.Day20;
 
-public class PartOne(string input, int threshold) : Solution(input)
+public class PartTwo(string input, int threshold) : Solution(input)
 {
     private char[][] _map = null!;
 
     private const char WallSymbol = '#';
+    private const int MaxCheatTime = 20;
 
     public override long Solve()
     {
@@ -28,23 +29,29 @@ public class PartOne(string input, int threshold) : Solution(input)
                 if (dist[y, x] == -1)
                     continue;
 
-                Position[] neighbours =
-                [
-                    new(x + 1, y - 1), // top right
-                    new(x + 2, y), // right
-                    new(x + 1, y + 1), // bottom right
-                    new(x, y + 2), // bottom
-                ];
-
-                foreach (var neighbour in neighbours)
+                for (var r = 2; r <= MaxCheatTime; r++)
                 {
-                    if (neighbour.X == 0 || neighbour.Y == 0 || neighbour.X == _map[0].Length ||
-                        neighbour.Y == _map.Length)
-                        continue;
-                    if (dist[neighbour.Y, neighbour.X] == -1)
-                        continue;
-                    if (Math.Abs(dist[neighbour.Y, neighbour.X] - dist[y, x]) >= threshold + 2)
-                        count++;
+                    for (var yDiff = 0; yDiff <= r; yDiff++)
+                    {
+                        var xDiff = r - yDiff;
+                        Position[] neighbours =
+                        [
+                            new(x + xDiff, y + yDiff),
+                            new(x - xDiff, y + yDiff),
+                            new(x + xDiff, y - yDiff),
+                            new(x - xDiff, y - yDiff),
+                        ];
+
+                        foreach (var neighbour in neighbours)
+                        {
+                            if (neighbour.X <= 0 || neighbour.Y <= 0 || neighbour.X >= _map[0].Length || neighbour.Y >= _map.Length)
+                                continue;
+                            if (dist[neighbour.Y, neighbour.X] == -1)
+                                continue;
+                            if (dist[neighbour.Y, neighbour.X] - dist[y, x] >= threshold + r)
+                                count++;
+                        }
+                    }
                 }
             }
         }
@@ -63,7 +70,7 @@ public class PartOne(string input, int threshold) : Solution(input)
         }
 
         dist[curr.Y, curr.X] = 0;
-        
+
         while (_map[curr.Y][curr.X] != 'E')
         {
             Position[] neighbours =
@@ -86,7 +93,7 @@ public class PartOne(string input, int threshold) : Solution(input)
                 curr = newCurr;
             }
         }
-        
+
         return dist;
     }
 

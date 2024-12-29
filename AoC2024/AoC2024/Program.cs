@@ -30,7 +30,7 @@ Solution[] solutions =
     new AoC2024.Day13.PartOne("Day13/input.txt"),
     new AoC2024.Day13.PartTwo("Day13/input.txt"),
     new AoC2024.Day14.PartOne("Day14/input.txt", 101, 103),
-    new AoC2024.Day14.PartTwo("Day14/input.txt", 101, 103), // Draw 100k images
+    // new AoC2024.Day14.PartTwo("Day14/input.txt", 101, 103), // Draw 100k images
     new AoC2024.Day15.PartOne("Day15/input.txt"),
     new AoC2024.Day15.PartTwo("Day15/input.txt"),
     new AoC2024.Day16.PartOne("Day16/input.txt"),
@@ -41,8 +41,8 @@ Solution[] solutions =
     new AoC2024.Day18.PartTwo("Day18/input.txt", 70),
     new AoC2024.Day19.PartOne("Day19/input.txt"),
     new AoC2024.Day19.PartTwo("Day19/input.txt"),
-    // new AoC2024.Day20.PartOne("Day20/input.txt", 100), // To be optimized ~7,5min 
-    // new AoC2024.Day20.PartTwo("Day20/input.txt"), // not solved :c
+    new AoC2024.Day20.PartOne("Day20/input.txt", 100), 
+    new AoC2024.Day20.PartTwo("Day20/input.txt", 100),
     // new AoC2024.Day21.PartOne("Day21/input.txt"), // not solved :c
     // new AoC2024.Day21.PartTwo("Day21/input.txt"), // not solved :c
     new AoC2024.Day22.PartOne("Day22/input.txt"),
