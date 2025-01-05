@@ -25,6 +25,8 @@ Solution[] solutions =
     new AoC2021.Day10.PartTwo("Day10/input.txt"),
     new AoC2021.Day11.PartOne("Day11/input.txt"),
     new AoC2021.Day11.PartTwo("Day11/input.txt"),
+    new AoC2021.Day12.PartOne("Day12/input.txt"),
+    new AoC2021.Day12.PartTwo("Day12/input.txt"),
 ];
 
 var sw = new Stopwatch();
