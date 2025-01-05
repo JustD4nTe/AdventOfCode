@@ -14,4 +14,17 @@ public record Position(int X, int Y)
         => X >= 0 && X < maxX && Y >= 0 && Y < maxY;
 
     public override string ToString() => $"({X}, {Y})";
+
+    public Position[] Get8Directions()
+        =>
+        [
+            new(X, Y - 1),
+            new(X + 1, Y - 1),
+            new(X + 1, Y),
+            new(X + 1, Y + 1),
+            new(X, Y + 1),
+            new(X - 1, Y + 1),
+            new(X - 1, Y),
+            new(X - 1, Y - 1),
+        ];
 }
