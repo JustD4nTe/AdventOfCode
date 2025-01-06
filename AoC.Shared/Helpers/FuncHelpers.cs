@@ -18,4 +18,20 @@ public class FuncHelpers
             return value;
         };
     }
+
+    public static Func<A1, A2, R> Memoize<A1, A2, R>(Func<A1, A2, R> func)
+    {
+        var cache = new Dictionary<(A1, A2), R>();
+
+        return (a1, a2) =>
+        {
+            if (cache.TryGetValue((a1, a2), out R value))
+                return value;
+
+            value = func(a1, a2);
+            cache.Add((a1, a2), value);
+
+            return value;
+        };
+    }
 }
