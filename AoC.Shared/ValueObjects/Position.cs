@@ -15,16 +15,22 @@ public record Position(int X, int Y)
 
     public override string ToString() => $"({X}, {Y})";
 
-    public Position[] Get8Directions()
+    public Position[] GetBasicDirections()
         =>
         [
-            new(X, Y - 1),
+            this with { Y = Y - 1 },
+            this with { X = X + 1 },
+            this with { Y = Y + 1 },
+            this with { X = X - 1 },
+        ];
+    
+    public Position[] GetExtendedDirections()
+        =>
+        [
+            .. GetBasicDirections(),
             new(X + 1, Y - 1),
-            new(X + 1, Y),
             new(X + 1, Y + 1),
-            new(X, Y + 1),
             new(X - 1, Y + 1),
-            new(X - 1, Y),
             new(X - 1, Y - 1),
         ];
 }

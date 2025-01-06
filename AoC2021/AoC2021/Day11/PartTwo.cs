@@ -35,7 +35,7 @@ public class PartTwo(string input) : Solution(input)
                 if (grid[curr] <= 9)
                     continue;
                 
-                foreach (var next in curr.Get8Directions())
+                foreach (var next in curr.GetExtendedDirections())
                 {
                     if (grid.IsValid(next) && grid[next] <= 9)
                     {
