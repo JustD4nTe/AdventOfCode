@@ -3,8 +3,8 @@ using AoC.Shared;
 
 Solution[] solutions =
 [
-    //new AoC2025.Day1.PartOne("Day1/input.txt"),
-    //new AoC2025.Day1.PartTwo("Day1/input.txt"),
+    new AoC2025.Day1.PartOne("Day1/input.txt"),
+    new AoC2025.Day1.PartTwo("Day1/input.txt"),
     //new AoC2025.Day2.PartOne("Day2/input.txt"),
     //new AoC2025.Day2.PartTwo("Day2/input.txt"),
     //new AoC2025.Day3.PartOne("Day3/input.txt"),
