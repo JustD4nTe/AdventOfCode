@@ -24,8 +24,8 @@ public class PartTwo(string input) : Solution(input)
                 if (heatmap[y][x] == 9)
                     continue;
 
-                var queue = new Queue<Position>();
-                queue.Enqueue(new Position(x, y));
+                var queue = new Queue<Position2D>();
+                queue.Enqueue(new Position2D(x, y));
 
                 var size = 0;
 

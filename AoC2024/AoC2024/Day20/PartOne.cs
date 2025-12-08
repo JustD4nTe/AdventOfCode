@@ -28,7 +28,7 @@ public class PartOne(string input, int threshold) : Solution(input)
                 if (dist[y, x] == -1)
                     continue;
 
-                Position[] neighbours =
+                Position2D[] neighbours =
                 [
                     new(x + 1, y - 1), // top right
                     new(x + 2, y), // right
@@ -52,7 +52,7 @@ public class PartOne(string input, int threshold) : Solution(input)
         return count;
     }
 
-    private int[,] InitDist(Position curr)
+    private int[,] InitDist(Position2D curr)
     {
         var dist = new int[_map.Length, _map[0].Length];
 
@@ -66,7 +66,7 @@ public class PartOne(string input, int threshold) : Solution(input)
         
         while (_map[curr.Y][curr.X] != 'E')
         {
-            Position[] neighbours =
+            Position2D[] neighbours =
             [
                 curr with { X = curr.X - 1 },
                 curr with { X = curr.X + 1 },
@@ -90,14 +90,14 @@ public class PartOne(string input, int threshold) : Solution(input)
         return dist;
     }
 
-    private Position SearchStartPosition()
+    private Position2D SearchStartPosition()
     {
         for (var y = 0; y < _map.Length; y++)
         {
             for (var x = 0; x < _map[y].Length; x++)
             {
                 if (_map[y][x] == 'S')
-                    return new Position(x, y);
+                    return new Position2D(x, y);
             }
         }
 

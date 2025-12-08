@@ -62,7 +62,7 @@ public class PartTwo(string input) : Solution(input)
         return sum;
     }
 
-    private static void StartRobot(char[] robotMoves, Position robotPosition, char[][] warehouseMap)
+    private static void StartRobot(char[] robotMoves, Position2D robotPosition, char[][] warehouseMap)
     {
         foreach (var robotMove in robotMoves)
         {
@@ -92,7 +92,7 @@ public class PartTwo(string input) : Solution(input)
         }
     }
 
-    private static Position SearchRobotPosition(char[][] warehouseMap)
+    private static Position2D SearchRobotPosition(char[][] warehouseMap)
     {
         for (var y = 0; y < warehouseMap.Length; y++)
         {
@@ -101,19 +101,19 @@ public class PartTwo(string input) : Solution(input)
                 if (warehouseMap[y][x] != RobotSymbol)
                     continue;
 
-                return new Position(x, y);
+                return new Position2D(x, y);
             }
         }
 
         throw new Exception("Could not find robot position");
     }
 
-    private static bool TryToMove(List<Position> positionsToCheck, Directions direction,
+    private static bool TryToMove(List<Position2D> positionsToCheck, Directions direction,
         char[][] warehouseMap)
     {
         var emptySymbolCounter = 0;
-        var nextPositionsToCheck = new List<Position>();
-        var positionsWithBoxes = new List<Position>();
+        var nextPositionsToCheck = new List<Position2D>();
+        var positionsWithBoxes = new List<Position2D>();
 
         foreach (var positionToCheck in positionsToCheck)
         {
@@ -132,14 +132,14 @@ public class PartTwo(string input) : Solution(input)
                 {
                     case Directions.Up:
                         nextPositionsToCheck.Add(positionToCheck with { Y = positionToCheck.Y - 1 });
-                        nextPositionsToCheck.Add(new Position(positionToCheck.X + 1, positionToCheck.Y - 1));
+                        nextPositionsToCheck.Add(new Position2D(positionToCheck.X + 1, positionToCheck.Y - 1));
                         break;
                     case Directions.Right:
                         nextPositionsToCheck.Add(positionToCheck with { X = positionToCheck.X + 2 });
                         break;
                     case Directions.Down:
                         nextPositionsToCheck.Add(positionToCheck with { Y = positionToCheck.Y + 1 });
-                        nextPositionsToCheck.Add(new Position(positionToCheck.X + 1, positionToCheck.Y + 1));
+                        nextPositionsToCheck.Add(new Position2D(positionToCheck.X + 1, positionToCheck.Y + 1));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
@@ -154,14 +154,14 @@ public class PartTwo(string input) : Solution(input)
                 {
                     case Directions.Up:
                         nextPositionsToCheck.Add(positionToCheck with { Y = positionToCheck.Y - 1 });
-                        nextPositionsToCheck.Add(new Position(positionToCheck.X - 1, positionToCheck.Y - 1));
+                        nextPositionsToCheck.Add(new Position2D(positionToCheck.X - 1, positionToCheck.Y - 1));
                         break;
                     case Directions.Left:
                         nextPositionsToCheck.Add(positionToCheck with { X = positionToCheck.X - 2 });
                         break;
                     case Directions.Down:
                         nextPositionsToCheck.Add(positionToCheck with { Y = positionToCheck.Y + 1 });
-                        nextPositionsToCheck.Add(new Position(positionToCheck.X - 1, positionToCheck.Y + 1));
+                        nextPositionsToCheck.Add(new Position2D(positionToCheck.X - 1, positionToCheck.Y + 1));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
@@ -198,7 +198,7 @@ public class PartTwo(string input) : Solution(input)
         return true;
     }
 
-    private static Position GetNextPosition(Position position, Directions direction)
+    private static Position2D GetNextPosition(Position2D position, Directions direction)
         => direction switch
         {
             Directions.Left => position with { X = position.X - 1 },

@@ -24,7 +24,7 @@ public static class ArrayHelper
     public static T[][] InitMap<T>(int length, int height)
         => Enumerable.Range(0, height).Select(x => new T[length]).ToArray();
 
-    public static void Fill<T>(T[][] map, Span<Position> positions, T value)
+    public static void Fill<T>(T[][] map, Span<Position2D> positions, T value)
     {
         foreach (var p in positions)
             map[p.Y][p.X] = value;

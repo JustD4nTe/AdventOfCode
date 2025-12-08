@@ -13,28 +13,28 @@ public class PartOne(string input) : Solution(input)
         return SearchForStartPositions().Sum(start => GoThroughTrailhead(start, 1).Distinct().Count());
     }
 
-    private List<Position> SearchForStartPositions()
+    private List<Position2D> SearchForStartPositions()
     {
-        var startPositions = new List<Position>();
+        var startPositions = new List<Position2D>();
 
         for (var y = 0; y < _map.Length; y++)
         {
             for (var x = 0; x < _map[y].Length; x++)
             {
                 if (_map[y][x] == 0)
-                    startPositions.Add(new Position(x, y));
+                    startPositions.Add(new Position2D(x, y));
             }
         }
 
         return startPositions;
     }
 
-    private List<Position> GoThroughTrailhead(Position position, int height)
+    private List<Position2D> GoThroughTrailhead(Position2D position, int height)
     {
         if (height - 1 == 9 && _map[position.Y][position.X] == 9)
             return [position];
 
-        var visited = new List<Position>();
+        var visited = new List<Position2D>();
         
         if (position.Y - 1 >= 0 && _map[position.Y - 1][position.X] == height)
             visited.AddRange(GoThroughTrailhead(position.MoveUp(), height + 1));

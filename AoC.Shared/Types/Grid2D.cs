@@ -32,7 +32,7 @@ public class Grid2D<T>
         }
     }
     
-    public T this[Position p]
+    public T this[Position2D p]
     {
         get => _grid[p.Y][p.X];
         set => _grid[p.Y][p.X] = value;
@@ -44,16 +44,16 @@ public class Grid2D<T>
         set => _grid[y][x] = value;
     }
 
-    public bool IsValid(Position p) 
+    public bool IsValid(Position2D p) 
         => p.Y >= 0 && p.Y < Height && p.X >= 0 && p.X < Length;
 
-    public IEnumerable<Position> GoThroughGrid()
+    public IEnumerable<Position2D> GoThroughGrid()
     {
         for (var y = 0; y < Height; y++)
         {
             for (var x = 0; x < Length; x++)
             {
-                yield return new Position(x, y);
+                yield return new Position2D(x, y);
             }
         }
     }

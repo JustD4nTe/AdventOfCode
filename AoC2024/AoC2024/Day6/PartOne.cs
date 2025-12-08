@@ -69,7 +69,7 @@ public class PartOne(string input) : Solution(input)
         return map.Sum(x => x.Count(y => y == 'X'));
     }
 
-    private static Position SearchGuardPosition(char[][] map)
+    private static Position2D SearchGuardPosition(char[][] map)
     {
         for (var y = 0; y < map.Length; y++)
         {
@@ -77,14 +77,14 @@ public class PartOne(string input) : Solution(input)
             {
                 if (map[y][x] == '^')
                 {
-                    return new Position(x, y);
+                    return new Position2D(x, y);
                 }
             }
         }
 
-        return new Position(0, 0);
+        return new Position2D(0, 0);
     }
 
-    private static bool IsGuardInsideMap(Position guardPosition, char[][] map)
+    private static bool IsGuardInsideMap(Position2D guardPosition, char[][] map)
         => guardPosition is { X: >= 0, Y: >= 0 } && guardPosition.X < map[0].Length && guardPosition.Y < map.Length;
 }

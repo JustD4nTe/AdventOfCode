@@ -9,9 +9,9 @@ public class PartTwo(string input) : Solution(input)
     public override long Solve()
     {
         var gardenMap = File.ReadAllLines(Input).Select(x => x.ToCharArray()).ToArray();
-        var plantsAreas = new List<List<Position>>();
+        var plantsAreas = new List<List<Position2D>>();
 
-        var seen = new HashSet<Position>();
+        var seen = new HashSet<Position2D>();
 
         for (var y = 0; y < gardenMap.Length; y++)
         {
@@ -20,10 +20,10 @@ public class PartTwo(string input) : Solution(input)
                 if (plantsAreas.Any(p => p.Any(z => z.X == x && z.Y == y)))
                     continue;
 
-                var plantPositions = new List<Position>();
+                var plantPositions = new List<Position2D>();
 
-                var queue = new Queue<Position>();
-                queue.Enqueue(new Position(x, y));
+                var queue = new Queue<Position2D>();
+                queue.Enqueue(new Position2D(x, y));
 
                 do
                 {

@@ -51,7 +51,7 @@ public class PartOne(string input) : Solution(input)
         return sum;
     }
 
-    private static void StartRobot(char[] robotMoves, Position robotPosition, char[][] warehouseMap)
+    private static void StartRobot(char[] robotMoves, Position2D robotPosition, char[][] warehouseMap)
     {
         foreach (var robotMove in robotMoves)
         {
@@ -80,7 +80,7 @@ public class PartOne(string input) : Solution(input)
         }
     }
 
-    private static Position SearchRobotPosition(char[][] warehouseMap)
+    private static Position2D SearchRobotPosition(char[][] warehouseMap)
     {
         for (var y = 0; y < warehouseMap.Length; y++)
         {
@@ -89,14 +89,14 @@ public class PartOne(string input) : Solution(input)
                 if (warehouseMap[y][x] != RobotSymbol)
                     continue;
 
-                return new Position(x, y);
+                return new Position2D(x, y);
             }
         }
 
         throw new Exception("Could not find robot position");
     }
 
-    private static bool TryToMove(Position currPosition, Directions direction, char[][] warehouseMap)
+    private static bool TryToMove(Position2D currPosition, Directions direction, char[][] warehouseMap)
     {
         switch (warehouseMap[currPosition.Y][currPosition.X])
         {
@@ -121,7 +121,7 @@ public class PartOne(string input) : Solution(input)
         }
     }
 
-    private static Position GetNextPosition(Position position, Directions direction)
+    private static Position2D GetNextPosition(Position2D position, Directions direction)
         => direction switch
         {
             Directions.Left => position with { X = position.X - 1 },

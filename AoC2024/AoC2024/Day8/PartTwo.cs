@@ -17,9 +17,9 @@ public class PartTwo(string input) : Solution(input)
         return CalculateAntinodes(mapOfAntennas, maxX, maxY).Union(mapOfAntennas.SelectMany(x => x.Value)).Distinct().Count();
     }
 
-    private static List<Position> CalculateAntinodes(Dictionary<char, List<Position>> mapOfAntennas, int maxX, int maxY)
+    private static List<Position2D> CalculateAntinodes(Dictionary<char, List<Position2D>> mapOfAntennas, int maxX, int maxY)
     {
-        var mapOfAntinodes = new List<Position>();
+        var mapOfAntinodes = new List<Position2D>();
         foreach (var antennaPositions in mapOfAntennas.Values)
         {
             for (var i = 0; i < antennaPositions.Count; i++)
@@ -49,12 +49,12 @@ public class PartTwo(string input) : Solution(input)
         return mapOfAntinodes;
     }
 
-    private static Position CalculateAntinodePosition(Position p1, Position p2) 
-        => Position.GetVector(p1, p2).CalculatePosition(p2);
+    private static Position2D CalculateAntinodePosition(Position2D p1, Position2D p2) 
+        => Position2D.GetVector(p1, p2).CalculatePosition(p2);
 
-    private static Dictionary<char, List<Position>> SearchForAntennas(char[][] rawInput)
+    private static Dictionary<char, List<Position2D>> SearchForAntennas(char[][] rawInput)
     {
-        var mapOfAntennas = new Dictionary<char, List<Position>>();
+        var mapOfAntennas = new Dictionary<char, List<Position2D>>();
         for (var y = 0; y < rawInput.Length; y++)
         {
             for (var x = 0; x < rawInput[y].Length; x++)
@@ -62,7 +62,7 @@ public class PartTwo(string input) : Solution(input)
                 if(rawInput[y][x] == '.')
                     continue;
 
-                var position = new Position(x, y);
+                var position = new Position2D(x, y);
                 if(mapOfAntennas.TryGetValue(rawInput[y][x], out var positions))
                     positions.Add(position);
                 else

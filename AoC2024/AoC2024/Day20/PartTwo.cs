@@ -34,7 +34,7 @@ public class PartTwo(string input, int threshold) : Solution(input)
                     for (var yDiff = 0; yDiff <= r; yDiff++)
                     {
                         var xDiff = r - yDiff;
-                        Position[] neighbours =
+                        Position2D[] neighbours =
                         [
                             new(x + xDiff, y + yDiff),
                             new(x - xDiff, y + yDiff),
@@ -59,7 +59,7 @@ public class PartTwo(string input, int threshold) : Solution(input)
         return count;
     }
 
-    private int[,] InitDist(Position curr)
+    private int[,] InitDist(Position2D curr)
     {
         var dist = new int[_map.Length, _map[0].Length];
 
@@ -73,7 +73,7 @@ public class PartTwo(string input, int threshold) : Solution(input)
 
         while (_map[curr.Y][curr.X] != 'E')
         {
-            Position[] neighbours =
+            Position2D[] neighbours =
             [
                 curr with { X = curr.X - 1 },
                 curr with { X = curr.X + 1 },
@@ -97,14 +97,14 @@ public class PartTwo(string input, int threshold) : Solution(input)
         return dist;
     }
 
-    private Position SearchStartPosition()
+    private Position2D SearchStartPosition()
     {
         for (var y = 0; y < _map.Length; y++)
         {
             for (var x = 0; x < _map[y].Length; x++)
             {
                 if (_map[y][x] == 'S')
-                    return new Position(x, y);
+                    return new Position2D(x, y);
             }
         }
 

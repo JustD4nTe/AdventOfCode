@@ -16,13 +16,13 @@ public class PartTwo(string input) : Solution(input)
     {
         var map = File.ReadAllLines(Input).Select(x => x.ToCharArray()).ToArray();
 
-        var reindeerPosition = new Position(1, map.Length - 2);
-        var endPosition = new Position(map[0].Length - 2, 1);
+        var reindeerPosition = new Position2D(1, map.Length - 2);
+        var endPosition = new Position2D(map[0].Length - 2, 1);
 
         var finished = Pathfinding(map, reindeerPosition, endPosition, map.Length, map[0].Length);
 
         List<Reindeer?> reindeers = [finished];
-        var paths = new List<Position>();
+        var paths = new List<Position2D>();
 
         while (reindeers.Count > 0)
         {
@@ -61,7 +61,7 @@ public class PartTwo(string input) : Solution(input)
         }
     }
 
-    private static Reindeer Pathfinding(char[][] map, Position start, Position end, int height, int length)
+    private static Reindeer Pathfinding(char[][] map, Position2D start, Position2D end, int height, int length)
     {
         var reindeer = new Reindeer(start, Directions.Right, 0);
 
@@ -107,9 +107,9 @@ public class PartTwo(string input) : Solution(input)
         return finished ?? throw new Exception("No path found");
     }
 
-    private class Reindeer(Position position, Directions direction, int cost)
+    private class Reindeer(Position2D position, Directions direction, int cost)
     {
-        public Position Position { get; } = position;
+        public Position2D Position { get; } = position;
         public Directions Direction { get; } = direction;
         public int Cost { get; private set; } = cost;
         public List<Reindeer>? Prev { get; set; }

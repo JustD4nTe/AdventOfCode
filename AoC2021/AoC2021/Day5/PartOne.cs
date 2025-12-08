@@ -24,8 +24,8 @@ public class PartOne(string input) : Solution(input)
 
         foreach (var line in rawInput)
         {
-            var start = new Position(line[0][0], line[0][1]);
-            var end = new Position(line[1][0], line[1][1]);
+            var start = new Position2D(line[0][0], line[0][1]);
+            var end = new Position2D(line[1][0], line[1][1]);
 
             if (start.X == end.X)
                 Horizontal(map, start, end);
@@ -36,7 +36,7 @@ public class PartOne(string input) : Solution(input)
         return map.Sum(x => x.Count(y => y >= 2));
     }
 
-    private static void Horizontal(int[][] map, Position start, Position end)
+    private static void Horizontal(int[][] map, Position2D start, Position2D end)
     {
         int startY, endY;
         var x = start.X;
@@ -56,7 +56,7 @@ public class PartOne(string input) : Solution(input)
             map[y][x]++;
     }
 
-    private static void Vertical(int[][] map, Position start, Position end)
+    private static void Vertical(int[][] map, Position2D start, Position2D end)
     {
         int startX, endX;
 

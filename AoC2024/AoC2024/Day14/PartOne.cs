@@ -18,7 +18,7 @@ public class PartOne(string input, int wide, int tall) : Solution(input)
                     .Select(int.Parse)
                     .ToArray())
                 .ToArray())
-            .Select(x => new Robot(new Position(x[0][0], x[0][1]), new Vector(x[1][0], x[1][1])))
+            .Select(x => new Robot(new Position2D(x[0][0], x[0][1]), new Vector(x[1][0], x[1][1])))
             .ToArray();
 
         for (var i = 0; i < Time; i++)
@@ -38,16 +38,16 @@ public class PartOne(string input, int wide, int tall) : Solution(input)
         return upLeft * upRight * downLeft * downRight;
     }
 
-    private class Robot(Position position, Vector vector)
+    private class Robot(Position2D position, Vector vector)
     {
-        public Position Position { get; private set; } = position;
+        public Position2D Position { get; private set; } = position;
         private Vector Vector { get; } = vector;
 
         public void Move(int wide, int tall)
         {
             var newX = TeleportThroughEdge(Position.X + Vector.X, wide);
             var newY = TeleportThroughEdge(Position.Y + Vector.Y, tall);
-            Position = new Position(newX, newY);
+            Position = new Position2D(newX, newY);
         }
 
         private static int TeleportThroughEdge(int value, int length)

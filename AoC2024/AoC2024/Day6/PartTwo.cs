@@ -14,14 +14,14 @@ public class PartTwo(string input) : Solution(input)
         // try to put obstruction where guard was just walking
         var tempMap = map.Select(o => o.ToArray()).ToArray();
         StalkGuardWithNewObstruction(guardPosition, tempMap);
-        var guardianPath = new List<Position>();
+        var guardianPath = new List<Position2D>();
         
         for (var y = 0; y < tempMap.Length; y++)
         {
             for (var x = 0; x < tempMap[y].Length; x++)
             {
                 if(tempMap[y][x] == 'X')
-                    guardianPath.Add(new Position(x, y));
+                    guardianPath.Add(new Position2D(x, y));
             }        
         }
 
@@ -39,7 +39,7 @@ public class PartTwo(string input) : Solution(input)
         return optionalObstructions;
     }
 
-    private static bool StalkGuardWithNewObstruction(Position guardPosition, char[][] map)
+    private static bool StalkGuardWithNewObstruction(Position2D guardPosition, char[][] map)
     {
         var guardDirection = Directions.Up;
         do
@@ -111,7 +111,7 @@ public class PartTwo(string input) : Solution(input)
         return false;
     }
 
-    private static bool IsGuardWalkThere(Directions guardDirection, char[][] map, Position guardPosition)
+    private static bool IsGuardWalkThere(Directions guardDirection, char[][] map, Position2D guardPosition)
     {
         switch (guardDirection)
         {
@@ -155,7 +155,7 @@ public class PartTwo(string input) : Solution(input)
         return false;
     }
 
-    private static Position SearchGuardPosition(char[][] map)
+    private static Position2D SearchGuardPosition(char[][] map)
     {
         for (var y = 0; y < map.Length; y++)
         {
@@ -163,14 +163,14 @@ public class PartTwo(string input) : Solution(input)
             {
                 if (map[y][x] == '^')
                 {
-                    return new Position(x, y);
+                    return new Position2D(x, y);
                 }
             }
         }
 
-        return new Position(0, 0);
+        return new Position2D(0, 0);
     }
 
-    private static bool IsGuardInsideMap(Position guardPosition, char[][] map)
+    private static bool IsGuardInsideMap(Position2D guardPosition, char[][] map)
         => guardPosition is { X: >= 0, Y: >= 0 } && guardPosition.X < map[0].Length && guardPosition.Y < map.Length;
 }

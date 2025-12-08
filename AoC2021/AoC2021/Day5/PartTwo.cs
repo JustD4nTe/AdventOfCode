@@ -24,8 +24,8 @@ public class PartTwo(string input) : Solution(input)
         
         foreach (var line in rawInput)
         {
-            var start = new Position(line[0][0], line[0][1]);
-            var end = new Position(line[1][0], line[1][1]);
+            var start = new Position2D(line[0][0], line[0][1]);
+            var end = new Position2D(line[1][0], line[1][1]);
             
             if (start.X == end.X)
             {
@@ -69,7 +69,7 @@ public class PartTwo(string input) : Solution(input)
         return map.Sum(x => x.Count(y => y > 1));
     }
 
-    private static void Horizontal(int[][] map, Position start, Position end)
+    private static void Horizontal(int[][] map, Position2D start, Position2D end)
     {
         int startY, endY;
         var x = start.X;
@@ -89,7 +89,7 @@ public class PartTwo(string input) : Solution(input)
             map[y][x]++;
     }
 
-    private static void Vertical(int[][] map, Position start, Position end)
+    private static void Vertical(int[][] map, Position2D start, Position2D end)
     {
         int startX, endX;
 
@@ -110,19 +110,19 @@ public class PartTwo(string input) : Solution(input)
             map[y][x]++;
     }
 
-    private static void SymmetricDiagonal(int[][] map, Position start, Position end)
+    private static void SymmetricDiagonal(int[][] map, Position2D start, Position2D end)
     {
         for (var i = start.X; i <= end.X; i++)
             map[i][i]++;
     }
 
-    private static void CrazyDiagonal(int[][] map, Position start, Position end)
+    private static void CrazyDiagonal(int[][] map, Position2D start, Position2D end)
     {
         for (int x = start.X, y = start.Y; x >= end.X || y <= end.Y; x--, y++)
             map[y][x]++;
     }
 
-    private static void Diagonal(int[][] map, Position start, Position end)
+    private static void Diagonal(int[][] map, Position2D start, Position2D end)
     {
         for (int x = start.X, y = start.Y; x <= end.X || y <= end.Y; x++, y++)
             map[y][x]++;

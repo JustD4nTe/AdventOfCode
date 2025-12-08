@@ -17,21 +17,21 @@ public class PartOne(string input, int memorySpaceSize, int maxByteLength) : Sol
                 .Split(",")
                 .Select(int.Parse)
                 .ToArray())
-            .Select(x => new Position(x[0], x[1]))
+            .Select(x => new Position2D(x[0], x[1]))
             .ToArray();
 
         if (corrupted.Length > maxByteLength)
             corrupted = corrupted[..maxByteLength];
 
-        var start = new Position(0, 0);
-        var end = new Position(memorySpaceSize, memorySpaceSize);
+        var start = new Position2D(0, 0);
+        var end = new Position2D(memorySpaceSize, memorySpaceSize);
 
         return Pathfinding(corrupted, start, end);
     }
 
-    private int Pathfinding(Position[] corrupted, Position start, Position end)
+    private int Pathfinding(Position2D[] corrupted, Position2D start, Position2D end)
     {
-        var openSet = new Queue<Position>();
+        var openSet = new Queue<Position2D>();
         openSet.Enqueue(start);
 
         var mScore = ArrayHelper.InitMap(Height, Length, int.MaxValue);
@@ -64,9 +64,9 @@ public class PartOne(string input, int memorySpaceSize, int maxByteLength) : Sol
         return mScore[end.Y][end.X];
     }
 
-    private Position[] GetNeighbours(Position current)
+    private Position2D[] GetNeighbours(Position2D current)
     {
-        var neighbours = new List<Position>();
+        var neighbours = new List<Position2D>();
 
         if (current.Y + 1 < Height)
             neighbours.Add(current with { Y = current.Y + 1 });

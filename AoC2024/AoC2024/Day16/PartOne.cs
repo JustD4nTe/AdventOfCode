@@ -15,13 +15,13 @@ public class PartOne(string input) : Solution(input)
     {
         var map = File.ReadAllLines(Input).Select(x => x.ToCharArray()).ToArray();
 
-        var reindeerPosition = new Position(1, map.Length - 2);
-        var endPosition = new Position(map[0].Length - 2, 1);
+        var reindeerPosition = new Position2D(1, map.Length - 2);
+        var endPosition = new Position2D(map[0].Length - 2, 1);
 
         return Pathfinding(map, reindeerPosition, endPosition);
     }
 
-    private static int Pathfinding(char[][] map, Position start, Position end)
+    private static int Pathfinding(char[][] map, Position2D start, Position2D end)
     {
         var reindeer = new Reindeer(start, Directions.Right, 0);
 
@@ -54,7 +54,7 @@ public class PartOne(string input) : Solution(input)
         return -1;
     }
 
-    private record Reindeer(Position Position, Directions Direction, int Cost);
+    private record Reindeer(Position2D Position, Directions Direction, int Cost);
 
     private class ReindeerComparer : IEqualityComparer<Reindeer>
     {

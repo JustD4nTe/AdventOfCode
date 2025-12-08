@@ -15,14 +15,14 @@ public class PartOne(string input) : Solution(input)
                 .ToArray())
             .ToArray());
 
-        var dest = new Position(grid.Length - 1, grid.Height - 1);
+        var dest = new Position2D(grid.Length - 1, grid.Height - 1);
 
         return FindPathWithLowestRisk(grid, dest);
     }
 
-    private static int FindPathWithLowestRisk(Grid2D<int> grid, Position dest)
+    private static int FindPathWithLowestRisk(Grid2D<int> grid, Position2D dest)
     {
-        var start = new PathRisk(new Position(0, 0), 0);
+        var start = new PathRisk(new Position2D(0, 0), 0);
         var queue = new PriorityQueue<PathRisk, int>();
         var visited = new List<PathRisk>();
 
@@ -59,5 +59,5 @@ public class PartOne(string input) : Solution(input)
         return -1;
     }
 
-    private record PathRisk(Position Position, int Risk);
+    private record PathRisk(Position2D Position, int Risk);
 }

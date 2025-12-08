@@ -17,12 +17,12 @@ public class PartTwo(string input, int memorySpaceSize) : Solution(input)
                 .Split(",")
                 .Select(int.Parse)
                 .ToArray())
-            .Select(x => new Position(x[0], x[1]))
+            .Select(x => new Position2D(x[0], x[1]))
             .ToArray()
             .AsSpan();
 
-        var start = new Position(0, 0);
-        var end = new Position(memorySpaceSize, memorySpaceSize);
+        var start = new Position2D(0, 0);
+        var end = new Position2D(memorySpaceSize, memorySpaceSize);
 
         var hi = corrupted.Length - 1;
         var mid = (int)Math.Round(hi / 2.0);
@@ -46,10 +46,10 @@ public class PartTwo(string input, int memorySpaceSize) : Solution(input)
         return -1;
     }
 
-    private bool Pathfinding(bool[][] visited, Position start, Position end)
+    private bool Pathfinding(bool[][] visited, Position2D start, Position2D end)
     {
         // to be discovered
-        var openSet = new Queue<Position>();
+        var openSet = new Queue<Position2D>();
         openSet.Enqueue(start);
 
         while (openSet.Count > 0)
@@ -73,9 +73,9 @@ public class PartTwo(string input, int memorySpaceSize) : Solution(input)
         return false;
     }
 
-    private List<Position> GetNeighbours(Position current)
+    private List<Position2D> GetNeighbours(Position2D current)
     {
-        var neighbours = new List<Position>();
+        var neighbours = new List<Position2D>();
 
         if (current.Y + 1 < Height)
             neighbours.Add(current with { Y = current.Y + 1 });

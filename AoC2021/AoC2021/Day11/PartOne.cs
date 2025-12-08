@@ -20,7 +20,7 @@ public class PartOne(string input) : Solution(input)
 
         for (var i = 0; i < 100; i++)
         {
-            var flashed = new Queue<Position>();
+            var flashed = new Queue<Position2D>();
             foreach (var p in grid.GoThroughGrid())
             {
                 grid[p]++;

@@ -17,7 +17,7 @@ public class PartOne(string input) : Solution(input)
                 .Split(",")
                 .Select(int.Parse)
                 .ToArray())
-            .Select(x => new Position(x[0], x[1]))
+            .Select(x => new Position2D(x[0], x[1]))
             .ToArray();
 
         var buff = rawInput[1].Split("\r\n")[0].Split(" ")[^1].Split("=");
@@ -26,7 +26,7 @@ public class PartOne(string input) : Solution(input)
 
         if (axis == "x")
         {
-            var newDots = new List<Position>();
+            var newDots = new List<Position2D>();
 
             foreach (var dot in dots)
             {
@@ -40,7 +40,7 @@ public class PartOne(string input) : Solution(input)
         }
         else
         {
-            var newDots = new List<Position>();
+            var newDots = new List<Position2D>();
 
             foreach (var dot in dots)
             {

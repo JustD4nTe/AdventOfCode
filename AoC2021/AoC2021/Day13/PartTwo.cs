@@ -17,7 +17,7 @@ public class PartTwo(string input) : Solution(input)
                 .Split(",")
                 .Select(int.Parse)
                 .ToArray())
-            .Select(x => new Position(x[0], x[1]))
+            .Select(x => new Position2D(x[0], x[1]))
             .ToArray();
 
         var folds = rawInput[1].Split("\r\n").Select(x => x.Split(" ")[^1].Split("=")).ToArray();
@@ -26,7 +26,7 @@ public class PartTwo(string input) : Solution(input)
             var axis = fold[0];
             var lineNumber = int.Parse(fold[1]);
 
-            var newDots = new List<Position>();
+            var newDots = new List<Position2D>();
 
             if (axis == "x")
             {
