@@ -35,6 +35,8 @@ Solution[] solutions =
     // new AoC2021.Day15.PartTwo("Day15/input.txt"), // To be optimized ~3min
     new AoC2021.Day16.PartOne("Day16/input.txt"),
     new AoC2021.Day16.PartTwo("Day16/input.txt"),
+    new AoC2021.Day17.PartOne("Day17/input.txt"),
+    new AoC2021.Day17.PartTwo("Day17/input.txt"),
 ];
 
 var sw = new Stopwatch();
