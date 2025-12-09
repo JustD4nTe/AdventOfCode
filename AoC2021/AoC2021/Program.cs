@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using AoC.Shared;
 
 Solution[] solutions =
@@ -33,6 +33,8 @@ Solution[] solutions =
     new AoC2021.Day14.PartTwo("Day14/input.txt"),
     new AoC2021.Day15.PartOne("Day15/input.txt"),
     // new AoC2021.Day15.PartTwo("Day15/input.txt"), // To be optimized ~3min
+    new AoC2021.Day16.PartOne("Day16/input.txt"),
+    new AoC2021.Day16.PartTwo("Day16/input.txt"),
 ];
 
 var sw = new Stopwatch();
