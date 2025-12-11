@@ -32,31 +32,31 @@
     <None Update="Day10\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day9\TestInput_a.txt">
+    <None Update="Day09\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day8\TestInput_a.txt">
+    <None Update="Day08\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day7\TestInput_a.txt">
+    <None Update="Day07\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day6\TestInput_a.txt">
+    <None Update="Day06\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day5\TestInput_a.txt">
+    <None Update="Day05\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day4\TestInput_a.txt">
+    <None Update="Day04\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day3\TestInput_a.txt">
+    <None Update="Day03\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day2\TestInput_a.txt">
+    <None Update="Day02\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day1\TestInput_a.txt">
+    <None Update="Day01\TestInput_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
