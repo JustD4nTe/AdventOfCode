@@ -4,6 +4,7 @@ namespace AoC2025.Day11;
 
 public class PartTwo(string input) : Solution(input)
 {
+    private readonly Dictionary<string, long> _cache = [];
     private Dictionary<string, string[]> _devices = [];
 
     public override long Solve()
@@ -12,52 +13,35 @@ public class PartTwo(string input) : Solution(input)
             .Select(x => x.Split(": "))
             .ToDictionary(x => x[0], x => x[1].Split(" ").ToArray());
 
-        // export to GraphViz
-        //Console.WriteLine();
-        //foreach (var device in _devices)
-        //{
-        //    Console.WriteLine($"{device.Key} -> {{ {string.Join(" ", device.Value)} }}");
-        //}
-
-        // well...at least it works
-        var a = Pathfinding("svr", "fft", ["njx", "fxz", "kmc", "opq", "amt"]);
-        Console.WriteLine($"a: {a}");
-        var b = Pathfinding("fft", "dac", ["tsp", "pvf", "lym", "hky", "yzb", "nsa","dio", "ybi", "ibr", "xuu", "xlo", "poa", "you", "vkz", "iqd"]);
-        Console.WriteLine($"b: {b}");
-        var c = Pathfinding("dac", "out", []);
-        Console.WriteLine($"c: {c}");
+        long a = Pathfinding("svr", "fft");
+        _cache.Clear();
+        long b = Pathfinding("fft", "dac");
+        _cache.Clear();
+        long c = Pathfinding("dac", "out");
         return a * b * c;
     }
 
-    private long Pathfinding(string start, string end, string[] avoid)
+    private long Pathfinding(string start, string end)
     {
-        var deviceVisitCount = new Dictionary<string, int>();
+        if (_cache.ContainsKey(start))
+            return _cache[start];
 
-        var q = new Queue<string>();
-        q.Enqueue(start);
-
-        do
+        if (start == end)
         {
-            var curr = q.Dequeue();
-            var outputs = _devices[curr];
-
-            foreach (var output in outputs)
+            _cache[start] = 1;
+        }
+        else
+        {
+            var result = 0L;
+            
+            foreach (var nextStart in _devices.GetValueOrDefault(start) ?? [])
             {
-                if (avoid.Contains(output))
-                    continue;
-
-                if (deviceVisitCount.TryGetValue(output, out int value))
-                    deviceVisitCount[output] = value + 1;
-                else
-                    deviceVisitCount[output] = 1;
-
-                if (output == end)
-                    continue;
-
-                q.Enqueue(output);
+                result += Pathfinding(nextStart, end);
             }
-        } while (q.Count > 0);
 
-        return deviceVisitCount[end];
+            _cache[start] = result;
+        }
+
+        return _cache[start];
     }
 }
